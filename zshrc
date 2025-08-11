@@ -63,7 +63,7 @@ GIT_STATUS_IGNORE_SUBMODULES="git"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker docker-compose git aws terraform 
+plugins=(docker git aws
 	zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
