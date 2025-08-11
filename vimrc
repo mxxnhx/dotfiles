@@ -1,34 +1,28 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Install vim-plug if not exist
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 call plug#begin()
 
-" The following are examples of different formats supported.
 Plug 'tpope/vim-fugitive'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-" All of your Plugins must be added before the following line
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/syntastic'
-Plug 'jparise/vim-graphql'
-Plug 'fatih/vim-go'
-Plug 'mtdl9/vim-log-highlighting'
 Plug 'dracula/vim'
 
 call plug#end()            " required
-"filetype plugin indent on    " required
-"NERDTree ON 단축키를 "\nt"로 설정
-map <Leader>nt <ESC>:NERDTree<CR>
-let NERDTreeShowHidden=1
-" let NERDTreeQuitOnOpen=1
-let g:go_imports_autosave = 1
 
+let g:dracula_colorterm = 0
 colorscheme dracula
 
 if &term =~ "xterm"
@@ -45,9 +39,6 @@ if &term =~ "xterm"
     let &t_Sb = "\<Esc>[4%dm"
   endif
 endif
-
-" Python syntastic only for error
-let g:syntastic_python_checkers = ['python', 'pylint -E']
 
 nnoremap <Tab> <C-w>w
 

@@ -2,10 +2,7 @@
 sudo apt install git vim tmux zsh curl -y
 
 # configure vim
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp ./vimrc ~/.vimrc
-vim +PlugInstall +qa
 
 # configure zsh with ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
